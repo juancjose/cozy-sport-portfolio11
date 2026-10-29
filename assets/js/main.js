@@ -140,19 +140,6 @@ const VENDEDORES_ROL = 'Asesora de ventas';
   onScroll();
   });
 
-  /* ---------- Taller: etapas con imagen sticky ---------- */
-  safe('taller', () => {
-  const stageImgs = $$('.ws-stage img'), wsNum = $('#wsNum');
-  const wsIO = new IntersectionObserver(es => es.forEach(e => {
-    if (!e.isIntersecting) return;
-    const i = +e.target.dataset.i;
-    $$('.ws-step').forEach(s => s.classList.toggle('on', s === e.target));
-    stageImgs.forEach((im, k) => im.classList.toggle('on', k === i));
-    if (wsNum) wsNum.textContent = String(i + 1).padStart(2, '0');
-  }), { rootMargin: '-45% 0px -45% 0px' });
-  $$('.ws-step').forEach(s => wsIO.observe(s));
-  });
-
   /* ---------- Tilt 3D ---------- */
   if (fine && !reduce) safe('tilt', () => {
     document.addEventListener('pointermove', e => {
@@ -170,81 +157,6 @@ const VENDEDORES_ROL = 'Asesora de ventas';
     });
   });
 
-  /* ---------- Hero: la ruta se dibuja (al cargar y con el scroll) ---------- */
-  safe('ruta-hero', () => {
-  const hrBox = $('.hroute');
-  const HR_IDS = ['hrLine', 'hrGlow', 'hrGhost', 'hrArea', 'hrStroke', 'hrGrid', 'hrTicks', 'hrStart', 'hrEnd', 'hrMarker', 'hrKm', 'hrRevealRect'];
-  if (hrBox && HR_IDS.every(id => document.getElementById(id))) {
-    const g = id => document.getElementById(id), NS = 'http://www.w3.org/2000/svg';
-    const line = g('hrLine'), KM = 100;
-    // perfil ilustrativo [x 0..1, altura 0..1]
-    const PROF = [[0,.18],[.06,.22],[.12,.16],[.19,.3],[.25,.26],[.31,.38],[.37,.33],[.43,.42],[.49,.36],[.55,.48],[.61,.58],[.66,.74],[.71,.92],[.75,.84],[.8,.62],[.85,.55],[.9,.4],[.95,.34],[1,.3]];
-    let pts = [], len = 0, BW = 0, shown = 0, ticks = [], t0 = 0, on = false, raf = 0;
-    const el = (n, a, p) => { const e = document.createElementNS(NS, n); for (const k in a) e.setAttribute(k, a[k]); p.appendChild(e); return e; };
-    const f1 = v => v.toFixed(1);
-    const smooth = P => { let d = `M${f1(P[0][0])},${f1(P[0][1])}`; for (let i = 0; i < P.length - 1; i++) { const a = P[i - 1] || P[i], b = P[i], c = P[i + 1], e = P[i + 2] || c; d += `C${f1(b[0] + (c[0] - a[0]) / 6)},${f1(b[1] + (c[1] - a[1]) / 6)} ${f1(c[0] - (e[0] - b[0]) / 6)},${f1(c[1] - (e[1] - b[1]) / 6)} ${f1(c[0])},${f1(c[1])}`; } return d; };
-    const yAt = x => { let lo = 0, hi = len; for (let i = 0; i < 22; i++) { const m = (lo + hi) / 2; line.getPointAtLength(m).x < x ? lo = m : hi = m; } return line.getPointAtLength(lo).y; };
-    const draw = p => {
-      p = Math.max(0, Math.min(1, p));
-      const L = len * p, pt = line.getPointAtLength(L);
-      line.style.strokeDashoffset = g('hrGlow').style.strokeDashoffset = len - L;
-      g('hrRevealRect').setAttribute('width', pt.x);
-      g('hrMarker').setAttribute('transform', `translate(${f1(pt.x)},${f1(pt.y)})`);
-      g('hrMarker').style.opacity = p < .004 ? 0 : 1;
-      const f = (pt.x - pts[0][0]) / (last(pts)[0] - pts[0][0]);
-      g('hrKm').textContent = 'km ' + Math.round(f * KM);
-      const pill = g('hrKm').parentNode, dx = Math.max(40 - pt.x, Math.min(0, BW - 40 - pt.x));
-      pill.setAttribute('transform', `translate(${f1(dx)},0)`);
-      pill.style.opacity = p >= .985 ? 0 : 1;
-      ticks.forEach(([q, t]) => t.classList.toggle('on', f >= q - .002));
-      g('hrEnd').classList.toggle('done', p >= .999);
-    };
-    const layout = () => {
-      const r = hrBox.getBoundingClientRect(), W = r.width, H = r.height; BW = W;
-      const mx = W < 700 ? 28 : Math.max(48, (W - 1320) / 2 + 48), top = H * .26, base = H - 52;
-      pts = PROF.map(([x, y]) => [mx + x * (W - 2 * mx), base - y * (base - top)]);
-      const d = smooth(pts);
-      ['hrLine', 'hrGlow', 'hrGhost'].forEach(id => g(id).setAttribute('d', d));
-      g('hrArea').setAttribute('d', d + `L${f1(last(pts)[0])},${base}L${f1(pts[0][0])},${base}Z`);
-      g('hrStroke').setAttribute('x1', mx); g('hrStroke').setAttribute('x2', W - mx);
-      len = line.getTotalLength();
-      line.style.strokeDasharray = g('hrGlow').style.strokeDasharray = `${len} ${len}`;
-      const grid = g('hrGrid'), tk = g('hrTicks'); grid.textContent = tk.textContent = ''; ticks = [];
-      for (let i = 0; i < 4; i++) { const y = top + i * (base - top) / 3; el('line', { x1: mx, x2: W - mx, y1: y, y2: y }, grid); }
-      const step = W < 700 ? 25 : 10;
-      for (let k = step; k < KM; k += step) {
-        const x = mx + k / KM * (W - 2 * mx), y = yAt(x), t = el('g', {}, tk);
-        el('line', { x1: x, x2: x, y1: y + 6, y2: base + 10 }, t);
-        el('circle', { class: 'dot', cx: x, cy: y, r: 3.2 }, t);
-        el('text', { x, y: base + 26 }, t).textContent = k + ' km';
-        ticks.push([k / KM, t]);
-      }
-      g('hrStart').setAttribute('transform', `translate(${f1(pts[0][0])},${f1(pts[0][1])})`);
-      g('hrEnd').setAttribute('transform', `translate(${f1(last(pts)[0])},${f1(last(pts)[1])})`);
-      draw(shown);
-    };
-    layout();
-    addEventListener('resize', layout);
-    // La ruta se dibuja siempre (también con 'efectos de animación' desactivados en Windows/macOS/teléfono):
-    // es un trazo que avanza, sin desplazar contenido.
-    {
-      // intro: arranca cuando la franja es visible (al cargar o al bajar) y lleva la Z al 40%;
-      // el scroll la lleva hasta la meta.
-      const scrollP = () => { const r = hrBox.getBoundingClientRect(), vh = innerHeight; return Math.max(0, Math.min(1, (vh - r.bottom) / (vh * .5))); };
-      const loop = now => {
-        if (!t0) t0 = now;
-        const k = Math.min(1, (now - t0) / 2600), intro = .4 * (1 - Math.pow(1 - k, 3));
-        const target = Math.max(intro, k > .15 ? .4 * Math.min(1, k * 1.2) + .6 * scrollP() : 0);
-        shown += (target - shown) * .07;
-        if (Math.abs(target - shown) < .0005) shown = target;
-        draw(shown);
-        raf = on ? requestAnimationFrame(loop) : 0;
-      };
-      new IntersectionObserver(([e]) => { on = e.isIntersecting; if (on && !raf) raf = requestAnimationFrame(loop); }, { threshold: .2 }).observe(hrBox);
-    }
-  }
-  });
-
   /* ---------- Video (carga diferida) ---------- */
   safe('video', () => $$('[data-yt]').forEach(b => b.addEventListener('click', () => {
     const f = document.createElement('iframe');
@@ -256,133 +168,120 @@ const VENDEDORES_ROL = 'Asesora de ventas';
     box.appendChild(f); b.replaceWith(box);
   })));
 
-  /* ---------- Formulario → WhatsApp: "Hablá con nuestras vendedoras" + medialuna de burbujas ---------- */
-  // El cliente elige con quién hablar. Nombres y números salen solo de VENDEDORES (arriba de todo).
-  safe('form', () => {
-  const form = $('#contactForm'), talk = $('#talk'), btn = $('#talkBtn'), arc = $('#talkArc');
-  if (!form || !talk || !btn || !arc) return;
-  const note = $('#formNote') || { style: {} };
-  const team = VENDEDORES, N = team.length;
+  /* ---------- "Hablá con nuestras vendedoras": medialuna de burbujas → WhatsApp ---------- */
+  // Se usa en dos lugares: el formulario de contacto y el "La quiero" de Armá tu camiseta.
+  // Nombres y números salen solo de VENDEDORES (arriba de todo).
   const store = { get: k => { try { return localStorage.getItem(k); } catch (_) { return null; } },
                   set: (k, v) => { try { localStorage.setItem(k, v); } catch (_) {} } };
-  let last = parseInt(store.get('cozy-vendedor'), 10);
-  if (!(last >= 0 && last < N)) last = -1;
-
-  const cap = document.createElement('p');
-  cap.className = 'talk-cap'; cap.setAttribute('aria-hidden', 'true');
-  cap.innerHTML = 'Elegí con quién hablar<small>' + VENDEDORES_ROL.replace(/^(\S+)/, '$1s') + '</small>';
-  arc.appendChild(cap);
-  arc.setAttribute('aria-label', 'Elegí con quién hablar por WhatsApp');
-  // Ángulos repartidos en media luna, de izquierda a derecha (5 → 162°, 126°, 90°, 54°, 18°)
-  const bubs = team.map((v, i) => {
-    const b = document.createElement('button');
-    b.type = 'button'; b.className = 'bub'; b.tabIndex = -1;
-    b.style.setProperty('--a', (180 - (180 / N) * (i + .5)) + 'deg');
-    b.style.setProperty('--d', (i * 45) + 'ms');
-    b.setAttribute('aria-label', 'Escribirle a ' + v.nombre + ' por WhatsApp');
-    b.innerHTML = '<svg aria-hidden="true"><use href="#i-user"/></svg><span class="bub-name" aria-hidden="true">' + v.nombre + '</span>';
-    b.addEventListener('click', () => send(i));
-    arc.appendChild(b);
-    return b;
-  });
-  const mark = () => bubs.forEach((b, i) => { b.classList.toggle('last', i === last); });
-  mark();
-
-  let isOpen = false, tClose = 0, hold = false;
-  const toBtn = () => { hold = true; btn.focus(); hold = false; };
-  const setOpen = v => {
-    clearTimeout(tClose);
-    if (v === isOpen) return;
-    isOpen = v; talk.classList.toggle('open', v); btn.setAttribute('aria-expanded', String(v));
-    if (!v && arc.contains(document.activeElement)) toBtn();
-  };
-  const start = () => (last >= 0 ? last : Math.floor(N / 2));
-  const focusBub = i => { const k = (i + N) % N; bubs.forEach((b, j) => { b.tabIndex = j === k ? 0 : -1; }); bubs[k].focus(); };
-  bubs[start()].tabIndex = 0;
-
-  // Mouse: se abre al pasar por encima; un puente invisible y una demora corta lo mantienen abierto hasta las burbujas
-  if (fine) {
-    talk.addEventListener('mouseenter', () => setOpen(true));
-    talk.addEventListener('mouseleave', () => {
-      clearTimeout(tClose);
-      tClose = setTimeout(() => { const a = document.activeElement; if (!(arc.contains(a) && a.matches(':focus-visible'))) setOpen(false); }, 280);
+  const picker = ({ talk, btn, arc, note, check, message, sent }) => {
+    if (!talk || !btn || !arc) return null;
+    note = note || { style: {} };
+    const team = VENDEDORES, N = team.length;
+    let last = parseInt(store.get('cozy-vendedor'), 10);
+    if (!(last >= 0 && last < N)) last = -1;
+    const cap = document.createElement('p');
+    cap.className = 'talk-cap'; cap.setAttribute('aria-hidden', 'true');
+    cap.innerHTML = 'Elegí con quién hablar<small>' + VENDEDORES_ROL.replace(/^(\S+)/, '$1s') + '</small>';
+    arc.appendChild(cap);
+    // Ángulos repartidos en media luna, de izquierda a derecha (5 → 162°, 126°, 90°, 54°, 18°)
+    const bubs = team.map((v, i) => {
+      const b = document.createElement('button');
+      b.type = 'button'; b.className = 'bub'; b.tabIndex = -1;
+      b.style.setProperty('--a', (180 - (180 / N) * (i + .5)) + 'deg');
+      b.style.setProperty('--d', (i * 45) + 'ms');
+      b.setAttribute('aria-label', 'Escribirle a ' + v.nombre + ' por WhatsApp');
+      b.innerHTML = '<svg aria-hidden="true"><use href="#i-user"/></svg><span class="bub-name" aria-hidden="true">' + v.nombre + '</span>';
+      b.addEventListener('click', () => send(i));
+      arc.appendChild(b);
+      return b;
     });
-  }
-  // Teclado: al enfocar el botón se abre; flechas para recorrer la medialuna
-  btn.addEventListener('focus', () => { if (!hold && btn.matches(':focus-visible')) setOpen(true); });
-  btn.addEventListener('click', e => {
-    if (e.detail === 0) { setOpen(true); focusBub(start()); }   // Enter / Espacio
-    else if (fine) setOpen(true);
-    else setOpen(!isOpen);                                        // táctil: toca para abrir y cerrar
-  });
-  btn.addEventListener('keydown', e => {
-    if (e.key === 'ArrowUp' || e.key === 'ArrowDown') { e.preventDefault(); setOpen(true); focusBub(start()); }
-  });
-  arc.addEventListener('keydown', e => {
-    const i = bubs.indexOf(document.activeElement); if (i < 0) return;
-    const go = { ArrowRight: i + 1, ArrowDown: i + 1, ArrowLeft: i - 1, ArrowUp: i - 1, Home: 0, End: N - 1 }[e.key];
-    if (go !== undefined) { e.preventDefault(); focusBub(go); }
-  });
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape' && isOpen) { const inside = talk.contains(document.activeElement); setOpen(false); if (inside) toBtn(); }
-  });
-  document.addEventListener('pointerdown', e => { if (isOpen && !talk.contains(e.target)) setOpen(false); });
-  talk.addEventListener('focusout', () => setTimeout(() => {
-    if (isOpen && !talk.contains(document.activeElement) && !(fine && talk.matches(':hover'))) setOpen(false);
-  }, 0));
-
-  const check = () => {
-    const bad = [...form.querySelectorAll('[required]')].find(el => !String(el.value || '').trim())
-      || [...form.elements].find(el => el.willValidate && !el.checkValidity());
-    if (!bad) return true;
-    setOpen(false);
-    note.textContent = String(bad.value || '').trim()
-      ? 'Revisá que el email esté bien escrito para poder enviarte una respuesta.'
-      : 'Completá nombre, email y tu idea para poder enviarte una respuesta.';
-    note.style.color = '#ff8f80';
-    bad.focus();
-    return false;
+    const mark = () => bubs.forEach((b, i) => { b.classList.toggle('last', i === last); });
+    mark();
+    let isOpen = false, tClose = 0, hold = false;
+    const toBtn = () => { hold = true; btn.focus(); hold = false; };
+    const setOpen = v => {
+      clearTimeout(tClose);
+      if (v === isOpen) return;
+      isOpen = v; talk.classList.toggle('open', v); btn.setAttribute('aria-expanded', String(v));
+      if (!v && arc.contains(document.activeElement)) toBtn();
+    };
+    const start = () => (last >= 0 ? last : Math.floor(N / 2));
+    const focusBub = i => { const k = (i + N) % N; bubs.forEach((b, j) => { b.tabIndex = j === k ? 0 : -1; }); bubs[k].focus(); };
+    bubs[start()].tabIndex = 0;
+    if (fine) {
+      talk.addEventListener('mouseenter', () => setOpen(true));
+      talk.addEventListener('mouseleave', () => {
+        clearTimeout(tClose);
+        tClose = setTimeout(() => { const a = document.activeElement; if (!(arc.contains(a) && a.matches(':focus-visible'))) setOpen(false); }, 280);
+      });
+    }
+    btn.addEventListener('focus', () => { if (!hold && btn.matches(':focus-visible')) setOpen(true); });
+    btn.addEventListener('click', e => {
+      if (e.detail === 0) { setOpen(true); focusBub(start()); }   // Enter / Espacio
+      else if (fine) setOpen(true);
+      else setOpen(!isOpen);                                        // táctil: toca para abrir y cerrar
+    });
+    btn.addEventListener('keydown', e => {
+      if (e.key === 'ArrowUp' || e.key === 'ArrowDown') { e.preventDefault(); setOpen(true); focusBub(start()); }
+    });
+    arc.addEventListener('keydown', e => {
+      const i = bubs.indexOf(document.activeElement); if (i < 0) return;
+      const go = { ArrowRight: i + 1, ArrowDown: i + 1, ArrowLeft: i - 1, ArrowUp: i - 1, Home: 0, End: N - 1 }[e.key];
+      if (go !== undefined) { e.preventDefault(); focusBub(go); }
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && isOpen) { const inside = talk.contains(document.activeElement); setOpen(false); if (inside) toBtn(); }
+    });
+    document.addEventListener('pointerdown', e => { if (isOpen && !talk.contains(e.target)) setOpen(false); });
+    talk.addEventListener('focusout', () => setTimeout(() => {
+      if (isOpen && !talk.contains(document.activeElement) && !(fine && talk.matches(':hover'))) setOpen(false);
+    }, 0));
+    const send = i => {
+      if (check && !check(() => setOpen(false))) return;
+      const seller = team[i];
+      last = i; store.set('cozy-vendedor', String(i)); mark();
+      setOpen(false);
+      const url = 'https://wa.me/' + seller.tel + '?text=' + encodeURIComponent(message());
+      const w = window.open(url, '_blank');
+      if (w) { try { w.opener = null; } catch (_) {} } else location.href = url;
+      note.style.color = ''; note.textContent = '¡Listo! Se abrió WhatsApp para escribirle a ' + seller.nombre + '. Si no se abrió, revisá que tu navegador permita ventanas emergentes.';
+      sent && sent(seller);
+    };
+    return { open: () => { setOpen(true); focusBub(start()); } };
   };
 
-  const send = i => {
-    if (!check()) return;
-    const fd = new FormData(form);
-    const v = (k) => String(fd.get(k) || '').trim() || '—';
-    const text = [
-      'Hola! Te escribo desde la web de Cozy Sport.',
-      '',
-      '*Nombre:* ' + v('nombre'),
-      '*Email:* ' + v('email'),
-      '*Teléfono:* ' + v('telefono'),
-      '*Equipo/Club:* ' + v('equipo'),
-      '*Disciplina:* ' + v('disciplina'),
-      '*Cantidad:* ' + v('cantidad'),
-      '',
-      '*Idea:*',
-      v('mensaje'),
-    ].join('\n');
-    const seller = team[i];
-    last = i; store.set('cozy-vendedor', String(i)); mark();
-    setOpen(false);
-    const url = 'https://wa.me/' + seller.tel + '?text=' + encodeURIComponent(text);
-    const w = window.open(url, '_blank');
-    if (w) { try { w.opener = null; } catch (_) {} } else location.href = url;
-    note.style.color = ''; note.textContent = '¡Listo! Se abrió WhatsApp para escribirle a ' + seller.nombre + '. Si no se abrió, revisá que tu navegador permita ventanas emergentes.';
-  };
-
-  // Enter dentro del formulario: valida y abre la medialuna para elegir
-  form.addEventListener('submit', e => { e.preventDefault(); if (check()) { setOpen(true); focusBub(start()); } });
+  safe('form', () => {
+    const form = $('#contactForm');
+    if (!form) return;
+    const note = $('#formNote');
+    const check = close => {
+      const bad = [...form.querySelectorAll('[required]')].find(el => !String(el.value || '').trim())
+        || [...form.elements].find(el => el.willValidate && !el.checkValidity());
+      if (!bad) return true;
+      close();
+      note.textContent = String(bad.value || '').trim()
+        ? 'Revisá que los datos estén bien escritos.'
+        : 'Completá tu nombre y tu idea para que podamos ayudarte.';
+      note.style.color = '#ff8f80';
+      bad.focus();
+      return false;
+    };
+    const message = () => {
+      const fd = new FormData(form), lines = ['Hola! Te escribo desde la web de Cozy Sport.', ''];
+      [['nombre', 'Nombre'], ['email', 'Email'], ['telefono', 'Teléfono'], ['equipo', 'Equipo/Club'], ['disciplina', 'Disciplina'], ['cantidad', 'Cantidad']]
+        .forEach(([k, l]) => { const v = String(fd.get(k) || '').trim(); if (v) lines.push('*' + l + ':* ' + v); });
+      lines.push('', '*Idea:*', String(fd.get('mensaje') || '').trim());
+      return lines.join('\n');
+    };
+    const p = picker({ talk: $('#talk'), btn: $('#talkBtn'), arc: $('#talkArc'), note, check, message });
+    // Enter dentro del formulario: valida y abre la medialuna para elegir
+    form.addEventListener('submit', e => { e.preventDefault(); if (p && check(() => {})) p.open(); });
   });
 
-  /* ---------- Barra de variantes (solo páginas de prueba): cerrar y apartarse en el formulario ---------- */
-  safe('varbar', () => {
-    const vb = $('.varbar'); if (!vb) return;
-    const x = $('.varbar-x', vb);
-    let closed = false; try { closed = sessionStorage.getItem('cozy-varbar') === '0'; } catch (_) {}
-    if (closed) vb.classList.add('closed');
-    x && x.addEventListener('click', () => { vb.classList.add('closed'); try { sessionStorage.setItem('cozy-varbar', '0'); } catch (_) {} });
-    const zone = $('#contacto');
-    if (zone && 'IntersectionObserver' in window) new IntersectionObserver(([e]) => vb.classList.toggle('away', e.isIntersecting && innerWidth < 1000), { rootMargin: '0px 0px -30% 0px' }).observe(zone);
+  // Armá tu camiseta → "La quiero": el mensaje lo arma story.js (window.cozyKitMessage)
+  safe('kit-picker', () => {
+    picker({ talk: $('#kitTalk'), btn: $('#kitTalkBtn'), arc: $('#kitTalkArc'), note: $('#kbNote'),
+      message: () => (window.cozyKitMessage ? window.cozyKitMessage() : 'Hola! Quiero armar una camiseta personalizada con Cozy Sport.') });
   });
 
   const yr = $('#yr'); if (yr) yr.textContent = new Date().getFullYear();

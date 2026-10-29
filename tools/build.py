@@ -25,6 +25,8 @@ def credits(_):
         seen.add(it['id'])
         by = f" · {html.escape(it['by'])}" if it['by'] != 'Pexels' else ''
         out.append(f'<li><a href="https://www.pexels.com/photo/{it["id"]}/" target="_blank" rel="noopener">{html.escape(it["title"])}{by}</a></li>')
+    for v in json.load(open(f'{ROOT}/assets/video/credits.json')):
+        out.append(f'<li><a href="https://www.pexels.com/video/{v["slug"]}/" target="_blank" rel="noopener">{html.escape(v["title"])} · {html.escape(v["by"])}</a></li>')
     return ''.join(out)
 
 s = open(f'{ROOT}/src/index.html').read()
@@ -34,7 +36,7 @@ s = s.replace('<!--sprite-->', SPRITE).replace('<!--credits-->', credits(None))
 # cache-busting: ?v=<hash del contenido> en CSS/JS (index y variantes) para no mezclar versiones viejas
 import hashlib, glob
 def ver(p): return hashlib.sha1(open(f'{ROOT}/{p}', 'rb').read()).hexdigest()[:10]
-V = {p: ver(p) for p in ('assets/css/styles.css', 'assets/css/simple.css', 'assets/js/main.js')}
+V = {p: ver(p) for p in ('assets/css/styles.css', 'assets/css/story.css', 'assets/js/main.js', 'assets/js/story.js')}
 def bust(t):
     for p, h in V.items():
         t = re.sub(r'((?:\.\./)?' + re.escape(p) + r')(\?v=[0-9a-f]+)?"', lambda m: f'{m.group(1)}?v={h}"', t)

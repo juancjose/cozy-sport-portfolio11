@@ -48,11 +48,75 @@
   "h0": 1602
  },
  {
-  "name": "tienda",
-  "id": 878151,
-  "by": "Philip Ackermann",
-  "title": "Corredor en una avenida arbolada entre la niebla",
+  "name": "ruta",
+  "id": 38346799,
+  "by": "Daigoro Folz",
+  "title": "Ciclista de ruta a toda velocidad",
   "w0": 2400,
-  "h0": 1688
+  "h0": 1602
+ },
+ {
+  "name": "mtb",
+  "id": 22858830,
+  "by": "Gustavo Eduardo",
+  "title": "Ciclista de montaña en un sendero del valle",
+  "w0": 2400,
+  "h0": 1600
+ },
+ {
+  "name": "maillot",
+  "id": 33410442,
+  "by": "Pexels",
+  "title": "Ciclista en movimiento entre campos amarillos",
+  "w0": 2400,
+  "h0": 1600
+ },
+ {
+  "name": "diseno-digital",
+  "id": 6765067,
+  "by": "Tima Miroshnichenko",
+  "title": "Sastre trabajando la moldería sobre la mesa",
+  "w0": 2400,
+  "h0": 1600
+ },
+ {
+  "name": "corte",
+  "id": 5830660,
+  "by": "Anna Shvets",
+  "title": "Medición y corte de tela sobre la mesa",
+  "w0": 2400,
+  "h0": 1600
+ },
+ {
+  "name": "costura",
+  "id": 32641555,
+  "by": "Rodolfo Gaion",
+  "title": "Costura de tela en máquina industrial",
+  "w0": 2400,
+  "h0": 1600
+ },
+ {
+  "name": "estampado",
+  "id": 27893047,
+  "by": "HONG SON",
+  "title": "Operario trabajando una tela estampada",
+  "w0": 2400,
+  "h0": 1600
+ },
+ {
+  "name": "control",
+  "id": 36356530,
+  "by": "Erwin Bosman",
+  "title": "Revisión a mano de una prenda",
+  "w0": 2400,
+  "h0": 1920
+ },
+ {
+  "name": "embalaje",
+  "id": 4498138,
+  "by": "Kaboompics.com",
+  "title": "Prendas guardadas en una caja de cartón",
+  "w0": 2400,
+  "h0": 1600
  }
 ]

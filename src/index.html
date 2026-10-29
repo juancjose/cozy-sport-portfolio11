@@ -20,13 +20,14 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
+<link rel="preload" as="image" type="image/webp" href="assets/video/ciclismo-poster-1280.webp" imagesrcset="assets/video/ciclismo-poster-640.webp 640w, assets/video/ciclismo-poster-1280.webp 1280w" imagesizes="100vw">
 <link rel="stylesheet" href="assets/css/styles.css">
-<link rel="stylesheet" href="assets/css/simple.css">
+<link rel="stylesheet" href="assets/css/story.css">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"ClothingStore","name":"Cozy Sport SA","description":"Indumentaria deportiva personalizada. Industria nacional desde 1983.","foundingDate":"1983","email":"info@cozysport.com","telephone":["+54 11 4723-3355","+54 11 4723-2255","+54 11 4723-3373"],"url":"https://cozysport.com/","address":{"@type":"PostalAddress","streetAddress":"Uruguay 3442","addressLocality":"Beccar","addressRegion":"Buenos Aires","postalCode":"1643","addressCountry":"AR"},"sameAs":["https://instagram.com/cozysport","https://www.facebook.com/cozysport","https://tiendacozy.com/"]}
+{"@context":"https://schema.org","@type":"ClothingStore","name":"Cozy Sport SA","description":"Indumentaria deportiva personalizada. Industria nacional desde 1983.","foundingDate":"1983","email":"info@cozysport.com","telephone":["+54 11 4723-3355","+54 11 4723-2255","+54 11 4723-3373"],"url":"https://cozysport.com/","address":{"@type":"PostalAddress","streetAddress":"Uruguay 3442","addressLocality":"Beccar","addressRegion":"Buenos Aires","postalCode":"1643","addressCountry":"AR"},"sameAs":["https://instagram.com/cozysport","https://www.facebook.com/cozysport","https://twitter.com/cozysport","https://www.youtube.com/channel/UCqqrq2bQ2Q-Dgik3gxvm1Yw","https://tiendacozy.com/"]}
 </script>
 </head>
-<body class="s2">
+<body class="st">
 <a class="skip" href="#main">Saltar al contenido</a>
 
 <!--sprite-->
@@ -36,73 +37,320 @@
     <a class="logo" href="#top" aria-label="Cozy Sport, volver arriba"><svg class="wm" viewBox="0 0 3310 710" aria-hidden="true"><use href="#i-wordmark"/></svg></a>
     <nav class="nav" aria-label="Principal">
       <ul>
-        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#nosotros">Nosotros</a></li>
+        <li><a href="#taller">Taller</a></li>
+        <li><a href="#deportes">Deportes</a></li>
+        <li><a href="#arma">Armá tu camiseta</a></li>
+        <li><a href="#tienda">Tienda</a></li>
         <li><a href="#contacto">Contacto</a></li>
       </ul>
     </nav>
-    <a class="btn hdr-cta" href="https://tiendacozy.com/" target="_blank" rel="noopener">Tienda <svg aria-hidden="true"><use href="#i-arrow-up"/></svg></a>
+    <div class="hdr-r">
+      <a class="btn hdr-cta" href="https://tiendacozy.com/" target="_blank" rel="noopener">Ir a la tienda <svg aria-hidden="true"><use href="#i-arrow-up"/></svg></a>
+      <button class="burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="mnav"><span></span></button>
+    </div>
   </div>
+  <div class="hdr-prog" aria-hidden="true"><i></i></div>
 </header>
+<nav class="mnav" id="mnav" aria-label="Menú móvil">
+  <ul>
+    <li><a href="#nosotros"><small>01</small>Nosotros</a></li>
+    <li><a href="#taller"><small>02</small>Taller</a></li>
+    <li><a href="#deportes"><small>03</small>Deportes</a></li>
+    <li><a href="#arma"><small>04</small>Armá tu camiseta</a></li>
+    <li><a href="#tienda"><small>05</small>Tienda</a></li>
+    <li><a href="#contacto"><small>06</small>Contacto</a></li>
+  </ul>
+  <div class="meta">
+    <a class="btn" href="https://tiendacozy.com/" target="_blank" rel="noopener" style="justify-self:start">Ir a la tienda <svg aria-hidden="true"><use href="#i-arrow-up"/></svg></a>
+    <span>Uruguay 3442 · Beccar · Buenos Aires</span>
+    <a href="mailto:info@cozysport.com">info@cozysport.com</a>
+  </div>
+</nav>
 
 <main id="main">
 
-<!-- ================= 1 · INICIO ================= -->
-<section id="inicio" aria-labelledby="s2-title">
-  <div class="s2-hero">
-    <div class="bg" data-parallax="0.15"><!--img:tienda|Corredor en una avenida arbolada con luz entre la niebla|100vw||eager--></div>
-    <div class="wrap s2-hero-in">
-      <p class="kicker">Indumentaria deportiva · Desde 1983</p>
-      <h1 id="s2-title" class="display">Vestimos<br>tu pasión.</h1>
-      <div class="s2-ctas">
-        <a class="btn" href="https://tiendacozy.com/" target="_blank" rel="noopener">Ir a la tienda <svg aria-hidden="true"><use href="#i-arrow-up"/></svg></a>
-        <a class="btn ghost" href="#contacto">Hablemos de tu equipo</a>
-      </div>
+<!-- ============ HERO ============ -->
+<section class="st-hero" aria-labelledby="hero-title">
+  <div class="vbg" data-video="ciclismo">
+    <img src="assets/video/ciclismo-poster-1280.webp" srcset="assets/video/ciclismo-poster-640.webp 640w, assets/video/ciclismo-poster-1280.webp 1280w" sizes="100vw" width="1280" height="720" alt="" fetchpriority="high" decoding="async">
+  </div>
+  <div class="wrap st-hero-in">
+    <p class="kicker">Desde 1983 · Industria nacional · Beccar</p>
+    <h1 id="hero-title" class="display st-mega">
+      <span class="ln"><span>Vestimos</span></span>
+      <span class="ln"><span class="outline">tu pasión</span></span>
+      <span class="ln"><span class="green">a medida.</span></span>
+    </h1>
+    <p class="lead">Diseñamos y fabricamos indumentaria deportiva personalizada para equipos, clubes y deportistas. Del primer boceto a la línea de largada, en nuestro propio taller.</p>
+    <div class="ctas">
+      <a class="btn btn-lg" href="https://tiendacozy.com/" target="_blank" rel="noopener">Ir a la tienda <svg aria-hidden="true"><use href="#i-arrow-up"/></svg></a>
+      <a class="btn ghost btn-lg" href="#arma">Armá tu camiseta <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
     </div>
-    <a class="s2-cue" href="#disciplinas" aria-label="Ver disciplinas"><span></span></a>
+  </div>
+  <a class="st-cue" href="#nosotros" aria-label="Seguir bajando"><span></span></a>
+</section>
+
+<!-- ============ 01 · NOSOTROS + HISTORIA ============ -->
+<section class="ch" id="nosotros" aria-labelledby="nos-title">
+  <div class="kline" aria-hidden="true">
+    <p class="kx" data-kx="-1"><span>Desde 1983</span><i>✦</i><span class="outline">Industria nacional</span><i>✦</i><span>Empresa familiar</span><i>✦</i><span class="outline">Taller propio</span><i>✦</i><span>Desde 1983</span></p>
+  </div>
+  <div class="wrap ch-grid">
+    <div class="ch-txt">
+      <p class="ch-n rv"><b>01</b> Nosotros</p>
+      <h2 id="nos-title" class="display st-h2 rv">Un equipo comprometido a <span class="green">crear tus sueños.</span></h2>
+      <p class="lead rv">Cozy, que en inglés significa <em>confortable</em>, nació en 1983. Hoy somos Cozy Sport: una empresa familiar que diseña y confecciona indumentaria deportiva con valores, pensando cada prenda como única para que quien la use sienta que es especial.</p>
+      <ul class="facts">
+        <li class="rv"><svg aria-hidden="true"><use href="#i-calendar"/></svg><div><strong>Desde 1983</strong><span>Más de cuatro décadas vistiendo a quienes se mueven.</span></div></li>
+        <li class="rv"><svg aria-hidden="true"><use href="#i-flag"/></svg><div><strong>Industria nacional</strong><span>Nombre en inglés, corazón argentino. Hecho por argentinos para el mundo.</span></div></li>
+        <li class="rv"><svg aria-hidden="true"><use href="#i-heart"/></svg><div><strong>Empresa familiar</strong><span>Cada prenda lleva nuestro cariño. No hacemos por hacer.</span></div></li>
+        <li class="rv"><svg aria-hidden="true"><use href="#i-needle"/></svg><div><strong>Taller propio</strong><span>Diseño, corte y confección bajo un mismo techo en Beccar.</span></div></li>
+      </ul>
+    </div>
+    <figure class="ch-fig rv">
+      <div class="par" data-par="0.06"><picture><source type="image/webp" srcset="assets/img/fachada-640.webp 640w, assets/img/fachada-1280.webp 1280w, assets/img/fachada-1728.webp 1728w" sizes="(min-width:1000px) 42vw, 100vw"><img src="assets/img/fachada.jpg" width="1728" height="1152" alt="Fachada de la fábrica de Cozy Sport en Beccar, con el cartel verde de la marca" loading="lazy" decoding="async"></picture></div>
+      <figcaption><b>83</b><span>Amateurs y profesionales:<br>todos son parte de esta familia</span></figcaption>
+    </figure>
   </div>
 
-  <div class="wrap s2-disc" id="disciplinas">
-    <h2 class="s2-h2">Un kit para <span>cada deporte.</span></h2>
-    <ul class="s2-tiles">
-      <li><a class="s2-tile" href="https://tiendacozy.com/" target="_blank" rel="noopener"><!--img:peloton|Ciclistas entrenando en grupo en la ruta|(min-width:900px) 33vw, 50vw--><h3>Ciclismo</h3><p>Ruta y MTB</p><svg class="go" aria-hidden="true"><use href="#i-arrow-up"/></svg></a></li>
-      <li><a class="s2-tile" href="https://tiendacozy.com/" target="_blank" rel="noopener"><!--img:running|Corredores de maratón en la bruma de la mañana|(min-width:900px) 33vw, 50vw--><h3>Running</h3><p>Remeras técnicas y kits</p><svg class="go" aria-hidden="true"><use href="#i-arrow-up"/></svg></a></li>
-      <li><a class="s2-tile" href="https://tiendacozy.com/" target="_blank" rel="noopener"><!--img:triatlon|Largada de natación de un triatlón en el mar|(min-width:900px) 33vw, 50vw--><h3>Triatlón</h3><p>Nadar, pedalear, correr</p><svg class="go" aria-hidden="true"><use href="#i-arrow-up"/></svg></a></li>
-      <li><a class="s2-tile" href="https://tiendacozy.com/" target="_blank" rel="noopener"><!--img:futbol|Jugadores en una cancha de fútbol|(min-width:900px) 33vw, 50vw--><h3>Fútbol</h3><p>Para tu club o tu equipo</p><svg class="go" aria-hidden="true"><use href="#i-arrow-up"/></svg></a></li>
-      <li><a class="s2-tile" href="https://tiendacozy.com/" target="_blank" rel="noopener"><!--img:footgolf|Pelota de fútbol sobre la línea del césped|(min-width:900px) 33vw, 50vw--><h3>Footgolf</h3><p>Vestimos campeones</p><svg class="go" aria-hidden="true"><use href="#i-arrow-up"/></svg></a></li>
-      <li><a class="s2-tile" href="https://tiendacozy.com/" target="_blank" rel="noopener"><!--img:deportistas|Triatletas saliendo del agua|(min-width:900px) 33vw, 50vw--><h3>Aguas abiertas</h3><p>Entrenar y competir</p><svg class="go" aria-hidden="true"><use href="#i-arrow-up"/></svg></a></li>
+  <div class="wrap hist" id="historia">
+    <div class="hist-head">
+      <p class="ch-n rv">Nuestra historia</p>
+      <h3 class="display st-h2 rv">Caímos, nos <span class="green">reinventamos</span>, seguimos.</h3>
+    </div>
+    <ol class="tl">
+      <li class="rv"><span class="yr">1983</span><div><h4>Una idea de cambio</h4><p>Abrimos nuestro local de venta al público, con prendas exclusivas y talles especiales. Cozy empieza su recorrido.</p></div></li>
+      <li class="rv"><span class="yr">Años 90</span><div><h4>Nos consolidamos</h4><p>Con el correr de los años fuimos creciendo hasta consolidarnos como marca.</p></div></li>
+      <li class="rv"><span class="yr">La caída</span><div><h4>Una mala jugada</h4><p>Los problemas del país y la entrada de prendas importadas nos hicieron una mala jugada, y nos apagamos.</p></div></li>
+      <li class="rv"><span class="yr">Reinvención</span><div><h4>Nace Cozy Sport</h4><p>De ser una marca de moda informal pasamos a la confección y creación de indumentaria deportiva, y a llamarnos “Cozy Sport”.</p></div></li>
+      <li class="rv"><span class="yr">Paso a paso</span><div><h4>Del piso al taller</h4><p>Pasamos de cortar en el piso a tener una mesa de corte; de una máquina de coser a un taller.</p></div></li>
+      <li class="rv"><span class="yr">Hoy</span><div><h4>Hecho por argentinos para el mundo</h4><p>Empresa familiar e industria nacional, junto a deportistas amateurs y profesionales: todos son parte de esta familia.</p></div></li>
+    </ol>
+    <details class="story rv">
+      <summary>Leer la historia completa <i aria-hidden="true">+</i></summary>
+      <div class="txt">
+        <p>En 1983 comienza una etapa especial en la Argentina y, así, una idea de cambio. Inaugurábamos nuestro local de venta al público, con prendas exclusivas y talles especiales. Cozy, que en inglés significa confortable, comenzaba su recorrido. Con el correr de los años fuimos creciendo y en los 90 nos consolidamos, pero los problemas del país y la entrada de prendas importadas nos hicieron una mala jugada y nos apagamos.</p>
+        <p>Pasó el tiempo y buscamos una forma de reinventarnos: nos diversificamos y, de ser una marca solo de moda informal, pasamos a la confección y creación de indumentaria deportiva, y a llamarnos “Cozy Sport”. Comenzamos de nuevo. Pasamos de cortar en el piso a tener una mesa de corte, de tener una máquina de coser a tener un taller, siempre apostando a la industria nacional, a fabricar algo diferente, algo con valores, algo argentino.</p>
+        <p>Somos una empresa familiar, por lo que cada prenda lleva nuestro cariño. No hacemos por hacer: pensamos cada producto como único, para que la persona que lo usa sienta que es especial. Tenemos nombre en inglés pero no somos importados: somos industria nacional, hecho por argentinos para el mundo.</p>
+        <p>Estamos junto a los deportistas amateurs y a los profesionales; todos son parte de esta familia. ¡Gracias por compartir este crecimiento!</p>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- ============ 02 · TALLER: PROCESO + ETAPAS + SERVICIOS ============ -->
+<section class="ch light" id="taller" aria-labelledby="taller-title">
+  <div class="kline" aria-hidden="true">
+    <p class="kx" data-kx="1"><span class="outline">Hecho acá</span><i>✦</i><span>Puntada a puntada</span><i>✦</i><span class="outline">Hecho acá</span><i>✦</i><span>Puntada a puntada</span></p>
+  </div>
+  <div class="wrap">
+    <div class="ch-head">
+      <p class="ch-n rv"><b>02</b> Taller en Beccar</p>
+      <h2 id="taller-title" class="display st-h2 rv">De tu idea <span class="green">a la meta.</span></h2>
+      <p class="lead rv">Tres etapas, un mismo equipo. Te acompañamos en todo el recorrido: desde el primer momento hasta la competencia.</p>
+    </div>
+    <ol class="path">
+      <li class="rv"><span class="pn">01 · Largada</span><h3>Tus ideas son nuestro engranaje</h3><p>Tus dibujos, imágenes, colores: todo lo que te inspire nos sirve para conocerte y llevar a cabo nuestro mejor trabajo.</p></li>
+      <li class="rv"><span class="pn">02 · Imagen</span><h3>Lo ves antes de que exista</h3><p>Desarrollamos un outfit a partir de lo que nos transmitiste. Antes de que algo se imprima, lo tenés que ver tal como lo soñaste.</p></li>
+      <li class="rv"><span class="pn">03 · Despegue</span><h3>Todo Cozy en marcha</h3><p>Con todo aprobado, despegamos con todos los departamentos de Cozy para que el producto salga en tiempo y forma. Siempre cuidando los detalles.</p></li>
+    </ol>
+  </div>
+
+  <div class="stages" id="etapas" aria-labelledby="etapas-title">
+    <div class="wrap st-head">
+      <h3 id="etapas-title" class="display st-h3 rv">Cada prenda recorre <span class="green">6 etapas.</span></h3>
+      <p class="sw-hint" aria-hidden="true">Deslizá <svg><use href="#i-arrow"/></svg></p>
+    </div>
+    <div class="wrap stg-wrap">
+      <ol class="stg">
+        <li class="rv"><figure><!--img:diseno-digital|Sastre trabajando la moldería sobre la mesa|(min-width:1000px) 30vw, 80vw--></figure><span class="n">01 · Diseño</span><h4>Diseño y moldería</h4><p>El boceto aprobado se convierte en archivo digital: colores, logos, nombres y números ubicados en cada pieza de la moldería, talle por talle.</p></li>
+        <li class="rv"><figure><!--img:estampado|Operario trabajando una tela estampada|(min-width:1000px) 30vw, 80vw--></figure><span class="n">02 · Color</span><h4>Impresión y sublimación</h4><p>El diseño se imprime sobre papel y, con calor y presión, la tinta pasa a ser parte de la tela: colores intensos que no se cuartean ni se despegan.</p></li>
+        <li class="rv"><figure><!--img:corte|Medición y corte de tela sobre la mesa|(min-width:1000px) 30vw, 80vw--></figure><span class="n">03 · Corte</span><h4>Mesa de corte</h4><p>Cada pieza se corta con precisión siguiendo la moldería, cuidando que el diseño quede alineado en costuras, mangas y laterales.</p></li>
+        <li class="rv"><figure><!--img:costura|Costura de tela en máquina industrial|(min-width:1000px) 30vw, 80vw--></figure><span class="n">04 · Confección</span><h4>Taller de costura</h4><p>Nuestro equipo de producción arma cada prenda en máquinas industriales y se encarga de que tus prendas estén a tiempo.</p></li>
+        <li class="rv"><figure><!--img:control|Revisión a mano de una prenda|(min-width:1000px) 30vw, 80vw--></figure><span class="n">05 · Control</span><h4>Control de calidad</h4><p>Revisamos color, costuras, talles y detalles prenda por prenda. Lo que sale de Cozy tiene que estar a la altura de lo que soñaste.</p></li>
+        <li class="rv"><figure><!--img:embalaje|Prendas guardadas en una caja de cartón|(min-width:1000px) 30vw, 80vw--></figure><span class="n">06 · Despegue</span><h4>Armado y embalaje</h4><p>Nuestro utilero controla cada pedido, lo arma y lo embala para que llegue completo y en tiempo y forma.</p></li>
+      </ol>
+      <p class="stg-note">Imágenes ilustrativas de Pexels.</p>
+    </div>
+  </div>
+
+  <div class="wrap serv">
+    <h3 class="display st-h3 rv">Brindando el <span class="outline">mejor</span> servicio.</h3>
+    <ul class="serv-list">
+      <li class="rv"><span>/01</span><svg aria-hidden="true"><use href="#i-screen"/></svg><b>Diseños personalizados</b><p>Pasamos tus ideas a formato digital, listas para producir.</p></li>
+      <li class="rv"><span>/02</span><svg aria-hidden="true"><use href="#i-pencil"/></svg><b>Bocetos</b><p>Bocetos a mano alzada, siempre buscando nuevas tendencias.</p></li>
+      <li class="rv"><span>/03</span><svg aria-hidden="true"><use href="#i-drop"/></svg><b>El color que esperás</b><p>Usamos las mejores tintas del mercado para llegar al color que imaginaste.</p></li>
+      <li class="rv"><span>/04</span><svg aria-hidden="true"><use href="#i-plane"/></svg><b>Volamos a tu lado</b><p>Estamos juntos en este viaje, desde el primer momento hasta la competencia.</p></li>
+      <li class="rv"><span>/05</span><svg aria-hidden="true"><use href="#i-finish"/></svg><b>La meta</b><p>Llegar a la meta cumpliendo con tus expectativas.</p></li>
     </ul>
   </div>
 </section>
 
-<!-- ================= 2 · CONTACTO ================= -->
-<section class="s2-contact" id="contacto" aria-labelledby="contact-title">
-  <div class="wrap s2-cgrid">
-    <div class="s2-about">
-      <p class="kicker">Contacto</p>
-      <h2 id="contact-title" class="s2-h2">Hablemos de <span>tu equipo.</span></h2>
-      <p class="s2-who">Empresa familiar e industria nacional desde 1983. Diseñamos y fabricamos indumentaria deportiva a medida en nuestro taller de Beccar.</p>
-      <ul class="s2-info">
-        <li><a href="https://www.google.com/maps/search/?api=1&amp;query=Uruguay+3442+Beccar+Buenos+Aires" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-pin"/></svg>Uruguay 3442, Beccar</a></li>
-        <li><a href="tel:+541147233355"><svg aria-hidden="true"><use href="#i-phone"/></svg>011 4723-3355</a></li>
-        <li><a href="mailto:info@cozysport.com"><svg aria-hidden="true"><use href="#i-mail"/></svg>info@cozysport.com</a></li>
-        <li><a href="https://instagram.com/cozysport" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-ig"/></svg>@cozysport</a></li>
-      </ul>
+<!-- ============ 03 · DEPORTES + LÍNEA CICLISMO ============ -->
+<section class="ch" id="deportes" aria-labelledby="dep-title">
+  <div class="vband">
+    <div class="vbg" data-video="running">
+      <img src="assets/video/running-poster-1280.webp" srcset="assets/video/running-poster-640.webp 640w, assets/video/running-poster-1280.webp 1280w" sizes="100vw" width="1280" height="720" alt="" loading="lazy" decoding="async">
     </div>
-    <form class="form" id="contactForm" novalidate>
-        <div class="form-head"><p class="form-title">Contanos tu proyecto</p><p class="form-req"><span aria-hidden="true">*</span> Obligatorio</p></div>
+    <div class="wrap vband-in">
+      <p class="ch-n rv"><b>03</b> Para tu deporte</p>
+      <h2 id="dep-title" class="display st-mega st-mega-s rv">Un kit para <span class="green">cada deporte.</span></h2>
+      <p class="lead rv">Indumentaria y accesorios: todo lo que necesites. Diseñamos prendas a medida para equipos, grupos de entrenamiento, eventos y deportistas.</p>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <ul class="sports">
+      <li class="rv"><a href="https://tiendacozy.com/" target="_blank" rel="noopener"><span class="sp-i">01</span><figure><!--img:peloton|Ciclistas entrenando en grupo en la ruta|(min-width:900px) 260px, 96px--></figure><span class="sp-n">Ciclismo</span><span class="sp-d">Maillots, culottes y kits completos para grupos y equipos de ruta o MTB.</span><svg class="sp-go" aria-hidden="true"><use href="#i-arrow-up"/></svg></a></li>
+      <li class="rv"><a href="https://tiendacozy.com/" target="_blank" rel="noopener"><span class="sp-i">02</span><figure><!--img:running|Corredores de maratón en la bruma de la mañana|(min-width:900px) 260px, 96px--></figure><span class="sp-n">Running</span><span class="sp-d">Remeras técnicas y kits para equipos y carreras.</span><svg class="sp-go" aria-hidden="true"><use href="#i-arrow-up"/></svg></a></li>
+      <li class="rv"><a href="https://tiendacozy.com/" target="_blank" rel="noopener"><span class="sp-i">03</span><figure><!--img:triatlon|Largada de natación de un triatlón en el mar|(min-width:900px) 260px, 96px--></figure><span class="sp-n">Triatlón</span><span class="sp-d">Trajes y prendas para nadar, pedalear y correr.</span><svg class="sp-go" aria-hidden="true"><use href="#i-arrow-up"/></svg></a></li>
+      <li class="rv"><a href="https://tiendacozy.com/" target="_blank" rel="noopener"><span class="sp-i">04</span><figure><!--img:futbol|Jugadores en una cancha de fútbol|(min-width:900px) 260px, 96px--></figure><span class="sp-n">Fútbol</span><span class="sp-d">Camisetas, shorts y conjuntos para tu club o equipo de amigos.</span><svg class="sp-go" aria-hidden="true"><use href="#i-arrow-up"/></svg></a></li>
+      <li class="rv"><a href="https://tiendacozy.com/" target="_blank" rel="noopener"><span class="sp-i">05</span><figure><!--img:footgolf|Pelota de fútbol sobre la línea del césped|(min-width:900px) 260px, 96px--></figure><span class="sp-n">Footgolf</span><span class="sp-d">Vestimos a campeones argentinos y mundiales.</span><svg class="sp-go" aria-hidden="true"><use href="#i-arrow-up"/></svg></a></li>
+      <li class="rv"><a href="https://tiendacozy.com/" target="_blank" rel="noopener"><span class="sp-i">06</span><figure><!--img:deportistas|Triatletas saliendo del agua|(min-width:900px) 260px, 96px--></figure><span class="sp-n">Aguas abiertas</span><span class="sp-d">Prendas para entrenar y competir en el agua.</span><svg class="sp-go" aria-hidden="true"><use href="#i-arrow-up"/></svg></a></li>
+    </ul>
+  </div>
+
+  <div class="cyc" id="ciclismo">
+    <div class="kline" aria-hidden="true">
+      <p class="kx" data-kx="-1"><span>Maillots</span><i>✦</i><span class="outline">que vuelan</span><i>✦</i><span>Maillots</span><i>✦</i><span class="outline">que vuelan</span><i>✦</i><span>Maillots</span></p>
+    </div>
+    <div class="wrap">
+      <div class="ch-head split">
+        <div>
+          <p class="ch-n rv">Línea ciclismo · nuestra línea destacada</p>
+          <h3 class="display st-h2 rv">Maillots <span class="green">que vuelan.</span></h3>
+        </div>
+        <p class="lead rv">Kits a medida para tu grupo de ruta, tu equipo de MTB o tu evento. Diseñamos con vos cada detalle: colores, logos, sponsors y nombres, para que el pelotón te reconozca desde lejos.</p>
+      </div>
+      <ul class="feats">
+        <li class="rv"><svg aria-hidden="true"><use href="#i-drop"/></svg><b>Diseño 100% personalizado</b><span>Tu identidad de punta a punta de la prenda.</span></li>
+        <li class="rv"><svg aria-hidden="true"><use href="#i-wind"/></svg><b>Telas técnicas</b><span>Elegimos el material según el uso y la temporada.</span></li>
+        <li class="rv"><svg aria-hidden="true"><use href="#i-bike"/></svg><b>Calce para pedalear</b><span>Moldería pensada para la posición sobre la bici.</span></li>
+        <li class="rv"><svg aria-hidden="true"><use href="#i-users"/></svg><b>Para todo el grupo</b><span>Del primer boceto a la salida del domingo.</span></li>
+      </ul>
+      <div class="kits3">
+        <article class="rv"><figure><!--img:ruta|Ciclista de ruta a toda velocidad|(min-width:900px) 31vw, 92vw--></figure><span class="chip">Ruta</span><h4>Maillot de ruta</h4><p>Corte ajustado, bolsillos traseros y diseño a tu medida para salidas largas.</p></article>
+        <article class="rv"><figure><!--img:maillot|Ciclista en movimiento entre campos amarillos|(min-width:900px) 31vw, 92vw--></figure><span class="chip">Equipo</span><h4>Kit de grupo</h4><p>Maillot y culotte con la identidad de tu team, sponsors y nombres.</p></article>
+        <article class="rv"><figure><!--img:mtb|Ciclista de montaña en un sendero del valle|(min-width:900px) 31vw, 92vw--></figure><span class="chip">MTB</span><h4>Mountain bike</h4><p>Prendas para el barro, el polvo y los senderos técnicos.</p></article>
+      </div>
+      <div class="acc">
+        <div class="acc-t">
+          <p class="ch-n rv">Indumentaria y accesorios</p>
+          <h3 class="display st-h3 rv">Todo lo que <span class="green">necesites.</span></h3>
+          <p class="rv">Además de prendas, diseñamos accesorios para acompañarte en cada entrenamiento. Mirá nuestra Mochila Multi Deporte de 50 litros.</p>
+        </div>
+        <button class="video rv" data-yt="ziSR-mGUtW4" aria-label="Reproducir video: Mochila Multi Deporte Cozy Sport, 50 litros">
+          <img src="https://i.ytimg.com/vi/ziSR-mGUtW4/hqdefault.jpg" alt="" loading="lazy" width="480" height="360">
+          <span class="play"><svg aria-hidden="true"><use href="#i-play"/></svg></span>
+        </button>
+      </div>
+      <div class="cta-band rv">
+        <p>Elegí tu disciplina y encontrá tu próxima prenda.</p>
+        <a class="btn btn-lg" href="https://tiendacozy.com/" target="_blank" rel="noopener">Ir a la tienda <svg aria-hidden="true"><use href="#i-arrow-up"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 04 · ARMÁ TU CAMISETA ============ -->
+<section class="ch kitb" id="arma" aria-labelledby="arma-title">
+  <div class="wrap">
+    <div class="ch-head split">
+      <div>
+        <p class="ch-n rv"><b>04</b> Armá tu camiseta</p>
+        <h2 id="arma-title" class="display st-h2 rv">Imaginala. <span class="green">Nosotros la hacemos.</span></h2>
+      </div>
+      <p class="lead rv">Probá colores y diseños acá mismo. Cuando te guste, tocá <b>La quiero</b> y se la mandamos a una de nuestras vendedoras para arrancar tu pedido personalizado.</p>
+    </div>
+    <div class="kb">
+      <div class="kb-stage">
+        <svg class="kb-svg" id="kbSvg" viewBox="0 0 400 420" role="img" aria-label="Vista previa de tu camiseta"></svg>
+        <p class="kb-sum" id="kbSum" aria-live="polite">Camiseta de fútbol · Bastones · Verde Cozy y Blanco</p>
+      </div>
+      <form class="kb-ctl" id="kbForm" onsubmit="return false">
+        <fieldset class="kb-f">
+          <legend>Deporte</legend>
+          <div class="seg">
+            <label><input type="radio" name="kb-sport" value="futbol" checked><span>Fútbol</span></label>
+            <label><input type="radio" name="kb-sport" value="ciclismo"><span>Ciclismo</span></label>
+            <label><input type="radio" name="kb-sport" value="running"><span>Running</span></label>
+          </div>
+        </fieldset>
+        <fieldset class="kb-f">
+          <legend>Diseño</legend>
+          <div class="seg seg-4">
+            <label><input type="radio" name="kb-pat" value="liso"><span><i class="pi pi-liso" aria-hidden="true"></i>Liso</span></label>
+            <label><input type="radio" name="kb-pat" value="bastones" checked><span><i class="pi pi-bastones" aria-hidden="true"></i>Bastones</span></label>
+            <label><input type="radio" name="kb-pat" value="banda"><span><i class="pi pi-banda" aria-hidden="true"></i>Banda</span></label>
+            <label><input type="radio" name="kb-pat" value="franja"><span><i class="pi pi-franja" aria-hidden="true"></i>Franja</span></label>
+          </div>
+        </fieldset>
+        <fieldset class="kb-f">
+          <legend>Color principal <output id="kbC1n">Verde Cozy</output></legend>
+          <div class="sw" data-sw="c1"></div>
+        </fieldset>
+        <fieldset class="kb-f">
+          <legend>Color secundario <output id="kbC2n">Blanco</output></legend>
+          <div class="sw" data-sw="c2"></div>
+        </fieldset>
+        <div class="kb-f">
+          <label class="kb-lbl" for="kbName">Nombre del equipo <small>(opcional)</small></label>
+          <input id="kbName" class="kb-in" maxlength="14" autocomplete="off" placeholder="Ej.: Los Pumas" enterkeyhint="done">
+        </div>
+        <div class="kb-go">
+          <div class="talk" id="kitTalk">
+            <button class="talk-btn" id="kitTalkBtn" type="button" aria-expanded="false" aria-controls="kitTalkArc"><span class="talk-ico" aria-hidden="true"><svg><use href="#i-whatsapp"/></svg></span><span class="talk-txt">La quiero</span><svg class="talk-chev" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 15 6-6 6 6"/></svg></button>
+            <div class="talk-arc" id="kitTalkArc" role="group" aria-label="Elegí con quién hablar por WhatsApp"></div>
+          </div>
+          <a class="btn ghost" href="https://tiendacozy.com/" target="_blank" rel="noopener">Ir a la tienda <svg aria-hidden="true"><use href="#i-arrow-up"/></svg></a>
+        </div>
+        <p class="kb-note" id="kbNote" aria-live="polite">Elegí una vendedora y se abre WhatsApp con tu diseño ya escrito. Es una vista previa ilustrativa: el diseño final lo armamos con vos.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 05 · TIENDA ============ -->
+<section class="ch shopv" id="tienda" aria-labelledby="shop-title">
+  <div class="vbg" data-video="aguas">
+    <img src="assets/video/aguas-poster-1280.webp" srcset="assets/video/aguas-poster-640.webp 640w, assets/video/aguas-poster-1280.webp 1280w" sizes="100vw" width="1280" height="720" alt="" loading="lazy" decoding="async">
+  </div>
+  <div class="wrap shop-in">
+    <p class="ch-n rv"><b>05</b> Tienda online</p>
+    <h2 id="shop-title" class="display st-mega st-mega-s rv">Apasionados <span class="outline">por el</span> <span class="green">deporte.</span></h2>
+    <p class="lead rv">Entrá a nuestra tienda online. Comprá desde tu casa: nosotros te lo llevamos.</p>
+    <a class="shop-big rv" href="https://tiendacozy.com/" target="_blank" rel="noopener"><span>Ir a tiendacozy.com</span><svg aria-hidden="true"><use href="#i-arrow-up"/></svg></a>
+  </div>
+</section>
+
+<!-- ============ FAQ + CONTACTO (compacto) ============ -->
+<section class="ch end" id="contacto" aria-labelledby="contact-title">
+  <div class="wrap end-grid">
+    <div class="faq-c" id="faq">
+      <p class="ch-n rv">Preguntas frecuentes</p>
+      <h2 class="display st-h3 rv">¿Cómo <span class="outline">arrancamos?</span></h2>
+      <details class="rv"><summary>¿Cómo empiezo un pedido personalizado?<i aria-hidden="true"></i></summary><div class="ans"><p>Escribinos por el formulario, por mail o llamanos. Contanos qué deporte hacés, para cuántas personas es y mandanos todo lo que te inspire: dibujos, imágenes, logos o colores. Con eso arrancamos.</p></div></details>
+      <details class="rv"><summary>¿Puedo ver el diseño antes de que se fabrique?<i aria-hidden="true"></i></summary><div class="ans"><p>Sí. Desarrollamos el diseño del outfit a partir de lo que nos transmitiste y, antes de imprimir nada, lo tenés que ver tal como lo soñaste. Recién cuando lo aprobás pasamos a producción.</p></div></details>
+      <details class="rv"><summary>¿Qué es la sublimación?<i aria-hidden="true"></i></summary><div class="ans"><p>Es una técnica en la que el diseño se imprime en papel y se transfiere a la tela con calor y presión. La tinta queda integrada a la fibra, por eso los colores son intensos, no se cuartean y permiten diseños sin límites de colores ni ubicación.</p></div></details>
+      <details class="rv"><summary>¿Para qué deportes hacen indumentaria?<i aria-hidden="true"></i></summary><div class="ans"><p>Ciclismo, running, triatlón, fútbol, footgolf y deportes de agua, entre otros. Si tu disciplina no está en la lista, consultanos: diseñamos a medida.</p></div></details>
+      <details class="rv"><summary>¿Cuánto tarda y cuál es la cantidad mínima?<i aria-hidden="true"></i></summary><div class="ans"><p>Depende del tipo de prenda, la cantidad y el momento del año. Escribinos con tu idea y te pasamos plazos y presupuesto para tu pedido.</p></div></details>
+      <details class="rv"><summary>¿Dónde puedo comprar productos Cozy?<i aria-hidden="true"></i></summary><div class="ans"><p>En nuestra tienda online, <a href="https://tiendacozy.com/" target="_blank" rel="noopener">tiendacozy.com</a>: comprás desde tu casa y nosotros te lo llevamos.</p></div></details>
+    </div>
+    <div class="ct">
+      <p class="ch-n rv">Contacto</p>
+      <h2 id="contact-title" class="display st-h3 rv">Hablemos de <span class="green">tu equipo.</span></h2>
+      <ul class="ct-info rv">
+        <li><svg aria-hidden="true"><use href="#i-pin"/></svg><span>Uruguay 3442, Beccar, Buenos Aires · CP 1643</span></li>
+        <li><svg aria-hidden="true"><use href="#i-phone"/></svg><span><a href="tel:+541147233355">011 4723-3355</a> · <a href="tel:+541147232255">4723-2255</a> · <a href="tel:+541147233373">4723-3373</a></span></li>
+        <li><svg aria-hidden="true"><use href="#i-mail"/></svg><a href="mailto:info@cozysport.com">info@cozysport.com</a></li>
+      </ul>
+      <form class="form ct-form rv" id="contactForm" novalidate>
         <div class="row">
           <div class="field"><label for="f-name">Nombre <span class="req" aria-hidden="true">*</span></label><input id="f-name" name="nombre" autocomplete="name" required></div>
-          <div class="field"><label for="f-mail">Email <span class="req" aria-hidden="true">*</span></label><input id="f-mail" name="email" type="email" autocomplete="email" required></div>
-        </div>
-        <div class="row">
-          <div class="field"><label for="f-tel">Teléfono</label><input id="f-tel" name="telefono" type="tel" autocomplete="tel"></div>
-          <div class="field"><label for="f-team">Equipo / club</label><input id="f-team" name="equipo"></div>
-        </div>
-        <div class="row">
           <div class="field"><label for="f-sport">Disciplina</label><select id="f-sport" name="disciplina"><option>Ciclismo</option><option>Running</option><option>Triatlón</option><option>Fútbol</option><option>Footgolf</option><option>Aguas abiertas</option><option>Otra</option></select></div>
-          <div class="field"><label for="f-qty">Cantidad aproximada</label><input id="f-qty" name="cantidad" inputmode="numeric" placeholder="Ej.: 20 prendas"></div>
         </div>
-        <div class="field"><label for="f-msg">Tu idea <span class="req" aria-hidden="true">*</span></label><textarea id="f-msg" name="mensaje" placeholder="Contanos qué querés: prendas, colores, logos, fechas…" required></textarea></div>
+        <div class="field"><label for="f-msg">Tu idea <span class="req" aria-hidden="true">*</span></label><textarea id="f-msg" name="mensaje" rows="3" placeholder="Prendas, colores, cantidad, fechas…" required></textarea></div>
         <div class="form-foot">
           <div class="talk" id="talk">
             <button class="talk-btn" id="talkBtn" type="button" aria-expanded="false" aria-controls="talkArc"><span class="talk-ico" aria-hidden="true"><svg><use href="#i-whatsapp"/></svg></span><span class="talk-txt">Hablá con nuestras vendedoras</span><svg class="talk-chev" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 15 6-6 6 6"/></svg></button>
@@ -111,20 +359,40 @@
         </div>
         <p class="note" id="formNote" aria-live="polite">Elegí con quién hablar y se abre WhatsApp con tu consulta ya escrita: solo tenés que tocar enviar.</p>
       </form>
+    </div>
   </div>
 </section>
 </main>
 
-<footer class="s2-ftr">
+<footer class="ftr st-ftr">
   <div class="wrap">
-    <span>© <span id="yr">2026</span> Cozy Sport SA · Industria nacional</span>
-    <details class="credits">
-      <summary>Fotos: <a href="https://www.pexels.com" target="_blank" rel="noopener">Pexels</a> · <u>ver créditos</u></summary>
-      <ul><!--credits--></ul>
-    </details>
+    <div class="ftr-cta">
+      <p class="ftr-cta-t">¿Listo para tu próxima prenda?</p>
+      <div class="ftr-cta-b">
+        <a class="btn btn-lg" href="https://tiendacozy.com/" target="_blank" rel="noopener">Ir a la tienda <svg aria-hidden="true"><use href="#i-arrow-up"/></svg></a>
+      </div>
+    </div>
+    <div class="st-ftr-row">
+      <a class="logo" href="#top" aria-label="Cozy Sport, volver arriba"><svg class="wm" viewBox="0 0 3310 710" aria-hidden="true"><use href="#i-wordmark"/></svg></a>
+      <p>Indumentaria deportiva personalizada. Industria nacional desde 1983.</p>
+      <div class="socials">
+        <a href="https://instagram.com/cozysport" target="_blank" rel="noopener" aria-label="Instagram"><svg><use href="#i-ig"/></svg></a>
+        <a href="https://www.facebook.com/cozysport" target="_blank" rel="noopener" aria-label="Facebook"><svg><use href="#i-fb"/></svg></a>
+        <a href="https://www.youtube.com/channel/UCqqrq2bQ2Q-Dgik3gxvm1Yw" target="_blank" rel="noopener" aria-label="YouTube"><svg><use href="#i-yt"/></svg></a>
+        <a href="https://twitter.com/cozysport" target="_blank" rel="noopener" aria-label="X (Twitter)"><svg><use href="#i-x"/></svg></a>
+      </div>
+    </div>
+    <div class="ftr-bottom">
+      <span class="copy">© <span id="yr">2026</span> Cozy Sport SA</span>
+      <details class="credits">
+        <summary>Foto de la fachada: Cozy Sport · Fotos y videos ilustrativos: <a href="https://www.pexels.com" target="_blank" rel="noopener">Pexels</a> · <u>ver créditos</u></summary>
+        <ul><li>Fachada de la fábrica en Beccar · foto propia de Cozy Sport</li><!--credits--></ul>
+      </details>
+    </div>
   </div>
 </footer>
 
 <script src="assets/js/main.js" defer></script>
+<script src="assets/js/story.js" defer></script>
 </body>
 </html>
