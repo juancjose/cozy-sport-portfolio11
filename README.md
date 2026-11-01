@@ -1,4 +1,14 @@
-# Cozy Sport · Sitio web (versión historia)
+<!-- jnce-header -->
+# Cozy Sport · Portfolio
+
+> Cozy Sport · Portfolio — v11 (simple, 2 secciones)
+
+**🛠️ Tecnologías:** HTML · CSS · JavaScript  
+**👤 Diseño y desarrollo:** [Juan José Cáceres](https://juancjose.github.io/jnce-studio/)
+
+![Vista previa de Cozy Sport · Portfolio](docs/preview.jpg)
+
+---
 
 **🔗 Ver la página online: [juancjose.github.io/cozy-sport-portfolio11](https://juancjose.github.io/cozy-sport-portfolio11/)**
 
